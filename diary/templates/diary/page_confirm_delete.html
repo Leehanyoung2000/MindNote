@@ -1,0 +1,23 @@
+<!-- [A] base 템플릿 상속 -->
+{%extends './base.html'%}
+<!-- [B] content 블럭 처리 -->
+{% block content%}
+<div class="wrap-delete">
+    <div class="delete-box">
+        <div class="note-info">
+            <p>&#123;</p>
+            <span class="note-date">{{object.dt_created}}<!--[C] 작성된 날짜 --></span>
+            <span class="note-title">{{object.title}}<!--[D] 일기 제목 --></span>
+            <p>&#125;</p>
+        </div>
+        <p>이 하루를 지울까요?</p>
+        <form method='post'>{% csrf_token %}
+            <ul>
+                <li><input type="submit" value="지우기"></li>
+                <li><a href="{% url 'page-detail' object.id %}">남기기</a></li>
+            </ul>
+        </form>
+    </div>
+</div>
+{% endblock content%}
+<!-- [B] content 블럭 처리 -->
